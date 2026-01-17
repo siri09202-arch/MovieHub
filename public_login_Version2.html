@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Login</title><link rel="stylesheet" href="/css/styles.css"></head>
+<body class="centered-page">
+  <main class="panel auth">
+    <h2>ログイン</h2>
+    <form id="loginForm">
+      <label>ユーザー名</label>
+      <input id="username" required />
+      <label>パスワード</label>
+      <input id="password" type="password" required />
+      <div style="margin-top:12px">
+        <button type="submit" class="btn">ログイン</button>
+        <a href="/register.html" class="btn ghost">登録</a>
+      </div>
+    </form>
+    <div id="msg" class="small"></div>
+  </main>
+<script>
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const u = document.getElementById('username').value;
+  const p = document.getElementById('password').value;
+  try {
+    const r = await fetch('/api/login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ username: u, password: p })});
+    const j = await r.json();
+    if (!r.ok) { document.getElementById('msg').textContent = j.error || 'Login failed'; return; }
+    localStorage.setItem('token', j.token);
+    localStorage.setItem('user', JSON.stringify(j.user));
+    location.href = '/';
+  } catch (err) { document.getElementById('msg').textContent = 'Error'; }
+});
+</script>
+</body>
+</html>

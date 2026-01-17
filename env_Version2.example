@@ -1,0 +1,7 @@
+# コピーして .env にしてください
+PORT=3000
+JWT_SECRET=replace_this_with_a_strong_secret
+UPLOAD_DIR=uploads
+DB_FILE=mini_yt.sqlite
+MAX_UPLOAD_MB=500
+THUMB_TIME_SECONDS=1

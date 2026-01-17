@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mini YouTube - 公開ビュー</title>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Mini YouTube</div>
+    <div class="search-wrap">
+      <input id="search" placeholder="タイトルや説明で検索" />
+    </div>
+    <nav class="nav">
+      <span id="userInfo"></span>
+      <a href="#" id="uploadLink" class="btn small">投稿</a>
+      <a href="/login.html" id="loginBtn" class="btn small">ログイン</a>
+      <a href="/register.html" id="regBtn" class="btn small">登録</a>
+      <a href="#" id="logoutBtn" class="btn small" style="display:none">ログアウト</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <aside class="panel" id="uploadPanel" style="display:none">
+      <h3>動画を投稿</h3>
+      <form id="uploadForm">
+        <label>動画ファイル</label>
+        <input id="fileInput" type="file" accept="video/*" required />
+        <label>タイトル</label>
+        <input id="titleInput" type="text" required />
+        <label>説明</label>
+        <textarea id="descInput" rows="3"></textarea>
+        <label><input id="thumbCheckbox" type="checkbox" checked /> サムネイルを自動生成して送信する</label>
+        <div class="row" style="margin-top:10px">
+          <button type="submit" class="btn">投稿</button>
+          <button type="button" id="cancelUpload" class="btn ghost">キャンセル</button>
+        </div>
+      </form>
+      <div id="uploadMsg" class="small"></div>
+    </aside>
+
+    <section class="panel content">
+      <div id="videosGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <!-- modal -->
+  <div id="modal" class="modal" style="display:none">
+    <div class="modal-inner">
+      <button id="closeModal" class="btn ghost">閉じる</button>
+      <h3 id="mTitle"></h3>
+      <video id="mPlayer" controls style="width:100%;max-height:60vh"></video>
+      <p id="mDesc"></p>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+        <button id="likeBtn" class="btn">いいね</button>
+        <span id="likeCount">0</span>
+        <span id="uploaderInfo" class="small"></span>
+        <button id="deleteVideoBtn" class="btn ghost" style="margin-left:auto;display:none">削除</button>
+      </div>
+      <hr/>
+      <div id="commentsSection">
+        <div id="commentsList"></div>
+        <h4>コメント</h4>
+        <input id="cAuthor" placeholder="名前 (省略可)" />
+        <textarea id="cText" placeholder="コメント"></textarea>
+        <button id="postComment" class="btn">投稿</button>
+      </div>
+    </div>
+  </div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./mini_yt.sqlite:/app/mini_yt.sqlite
+      - ./:/app
+    environment:
+      - PORT=3000
+      - JWT_SECRET=replace_with_secure_value
+      - UPLOAD_DIR=uploads
+      - DB_FILE=mini_yt.sqlite
+      - MAX_UPLOAD_MB=500
+      - THUMB_TIME_SECONDS=1
